@@ -1,10 +1,8 @@
-@extends('layouts.app')
+@extends('layouts/app')
 
 @section('main')
-
-
 <div class="wrap-table">
-	<a href="{{route('category.create')}}" class="btn btn-sm btn-primary">Add Category</a>
+	<a href="{{route('course.create')}}" class="btn btn-warning">Add New Course</a>
 	<div class="card shadow">
 		<div class="card-body">
 			<h2>All Data</h2>
@@ -18,9 +16,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach( $values as $value )
+					@foreach($values as $value)
 					<tr>
-						<td>{{$loop->index + 1}}</td>
+						<td>{{$loop->index+1}}</td>
 						<td>{{$value->name}}</td>
 						<td>{{$value->slug}}</td>
 						<td>
@@ -35,9 +33,5 @@
 		</div>
 	</div>
 </div>
-
-
-
-
 
 @endsection

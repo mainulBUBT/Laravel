@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class PostController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $values = Post::latest()->get();
-
-        return view('post.index', [
+        $values = Course::all();
+        return view('course.index', [
             'values' => $values
         ]);
     }
@@ -30,10 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $cats = Category::all();
-        return view('post.create',[
-            'cats' =>$cats
-        ]);
+       return view('course.create');
     }
 
     /**
@@ -44,14 +39,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'category_id' => $request->category,
-            'content' => $request->content
-        ]);
+        Course::create([
 
-        return redirect()->route('post.index');
+            'name' => $request->name,
+            'slug' =>Str::slug($request->name)
+
+        ]);
+        return redirect()->route('course.index');
     }
 
     /**
